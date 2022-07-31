@@ -22,7 +22,7 @@ class AdminMiddleware
             return $next($request);
             }
             else {
-                return redirect('/home')->with('status','Access Denied! as you are not admin');
+                return redirect('/home')->with('status','Access Denied! you are not admin');
             }
         }
             else {
