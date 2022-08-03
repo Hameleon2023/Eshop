@@ -38,5 +38,9 @@ class CartController extends Controller
         else {
             return response()->json(['status' => "login to continue"]);            
         }   
-    }    
+    }   
+    public function showCart(){
+        $itemcart=Cart::where('user_id',Auth::id())->get();
+        return view('frontend.cart',compact('itemcart'));
+    } 
 }

@@ -41,6 +41,7 @@
         @endif
         <div class="row mt-2">
           <div class="col-md-2">
+            <input type="hidden" class="prod_id" value="{{$product->id}}">
             <label for="Quantity">Quantity</label>
                 {{-- <input type="hidden" value="{{$product->id}}" class="prod_id"> --}}
                  <div class="input-group text-center mb-3">
@@ -54,7 +55,7 @@
           <div class="col-md-10">
             <br>
             <button type="button" class="btn btn-success me-3 float-start"> Add to wish list <i class="fas fa-heart"></i> </button>
-            <button   type="button" class="btn btn-primary me-3 addToCartBtn float-start " value="{{$product->id}}"> Add to cart <i class="fas fa-cart-plus"></i> </button>
+            <button   type="button" class="btn btn-primary me-3 addToCartBtn float-start "> Add to cart <i class="fas fa-cart-plus"></i> </button>
           </div>
         </div>
 
@@ -83,9 +84,9 @@
     // addToCart function start
     $('.addToCartBtn').click(function (e) { 
       e.preventDefault();
-      var product_id=$(this).val();
+      var product_id=$(this).closest('.product_data').find('.prod_id').val();
       var product_qty=$(this).closest('.product_data').find('.qty-input').val();      
-      
+      // alert(product_id)
       // csrf token start
       $.ajaxSetup({
              headers:
