@@ -14,6 +14,7 @@ class ProductController extends Controller
     {
         
         $products=Product::all();
+        
         return view('admin.product.index',compact('products'));
     }
 

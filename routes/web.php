@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\CartController;
+
 
 
 
@@ -24,16 +26,20 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+// Routes for User
 Route::get('/','Frontend\FrontendController@index')->name('index');
 Route::get('/category','Frontend\FrontendController@category')->name('user.categories');
 Route::get('view-category/{slug}','Frontend\FrontendController@viewCategory')->name('view.category');
 Route::get('product-page/{category_slug}/{product_slug}','Frontend\FrontendController@showProduct')->name('product.page');
 
-// Routes for User
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::middleware(['auth'])->group(function (){
+    
+// });
+Route::get('add-to-cart', 'Frontend\CartController@addToCart')->name('addToCart');
 
 Auth::routes();
 

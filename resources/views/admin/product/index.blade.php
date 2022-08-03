@@ -24,7 +24,9 @@
             @foreach ($products as $item)
             <tr>
               <td>{{$item->id}}</td>
+              @if ($item->category)
               <td>{{$item->category->name}}</td>
+              @endif
               <td>{{$item->name}}</td>
               <td>{{$item->description}}</td>
               <td>{{$item->selling_price}}</td>

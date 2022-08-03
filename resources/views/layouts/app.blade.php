@@ -81,6 +81,7 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{asset('frontend/js/jquery.min.js')}}"></script> 
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}" defer></script>
 </body>
 </html>
