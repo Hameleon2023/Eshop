@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+      
     <title>
       @yield('title')
-    </title>
+    </title>   
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{{asset('/frontend/js/jquery.min.js')}}"></script>
     {{-- OWl Carousel start --}}
     <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/owl.theme.default.min.css')}}">
@@ -30,7 +29,7 @@
     <link href="{{asset('admin/css/nucleo-svg.css')}}" rel="stylesheet" />
     
         <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
@@ -53,19 +52,19 @@
     </head>
 
     <body class="g-sidenav-show  bg-gray-200">
-     <meta name="csrf-token" content="{{ csrf_token() }}">
+     
       @include('layouts.includes.frontnavbar') 
       
       <div class="content">
         @yield('content')    
       </div>
-
     
-    <script src="{{asset('/frontend/js/jquery.min.js')}}"></script>     
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>      
+    <script src="{{asset('/frontend/js/ajaxcustom.js')}}"</script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   
     <script src="{{ asset('/frontend/js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>   

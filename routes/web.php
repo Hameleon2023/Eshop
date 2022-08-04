@@ -38,8 +38,6 @@ Route::get('product-page/{category_slug}/{product_slug}','Frontend\FrontendContr
    Route::get('cart','Frontend\CartController@showCart')->name('user.cart');
  });
 
-
-
 Route::get('add-to-cart', 'Frontend\CartController@addToCart')->name('addToCart');
 
 Auth::routes();

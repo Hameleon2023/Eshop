@@ -14,7 +14,8 @@ class CartController extends Controller
         
         $product_id=$request->input('product_id');
         $product_qty=$request->input('product_qty');
-        if (Auth::check())
+       
+        if (Auth::check())  
         {
             $product_check=Product::where('id',$product_id)->first();     
              

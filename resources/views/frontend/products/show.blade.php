@@ -14,9 +14,9 @@
 </div>
 
 <div class="container">
-  <div class="card shadow product_data">
+  <div class="card shadow">
     <div class="card-body">
-    <div class="row">
+    <div class="row product_data">
       <div class="col-md-4 border-right">
         <img src="{{asset('assets/uploads/products/'.$product->image)}}" class="w-100" alt="">
       </div>
@@ -41,10 +41,9 @@
         @endif
         <div class="row mt-2">
           <div class="col-md-2">
-            <input type="hidden" class="prod_id" value="{{$product->id}}">
+            <input type="hidden" value="{{$product->id}}" class="prod_id">
             <label for="Quantity">Quantity</label>
-                {{-- <input type="hidden" value="{{$product->id}}" class="prod_id"> --}}
-                 <div class="input-group text-center mb-3">
+                <div class="input-group text-center mb-3">
                    <button class="input-group-text decrement-btn">-</button>
                    <input type="text" name="quantity " value="1" class="form-control qty-input text-center">
                    <button class="input-group-text increment-btn">+</button>
@@ -55,7 +54,7 @@
           <div class="col-md-10">
             <br>
             <button type="button" class="btn btn-success me-3 float-start"> Add to wish list <i class="fas fa-heart"></i> </button>
-            <button   type="button" class="btn btn-primary me-3 addToCartBtn float-start "> Add to cart <i class="fas fa-cart-plus"></i> </button>
+            <button   id ="addtocart" type="button" class="btn btn-primary me-3 addToCartBtn float-start "> Add to cart <i class="fas fa-cart-plus"></i> </button>
           </div>
         </div>
 
@@ -73,83 +72,42 @@
 {{-- Content end --}}
 
 
-
 @section('scripts')
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>   --}}
 <script>
 
-  // Document start
   $(document).ready(function (){
-     
-    // addToCart function start
-    $('.addToCartBtn').click(function (e) { 
-      e.preventDefault();
-      var product_id=$(this).closest('.product_data').find('.prod_id').val();
-      var product_qty=$(this).closest('.product_data').find('.qty-input').val();      
-      // alert(product_id)
-      // csrf token start
-      $.ajaxSetup({
-             headers:
-             { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-         });     
-      //csrf token end
-      
-      // ajax start
-      $.ajax({
-        url: '{{url('add-to-cart')}}',
-        method: "GET",
-        data: {
-          "product_id": product_id,
-          "product_qty":  product_qty,
-        },
-        success: function (response) {
-          alert(response.status);
-        }
-      
-      });
-      //  axios.post('/add-to-cart', {'product_id': product_id, 'product_qty':  product_qty })
-      //   .then(function (response) {
-      //   console.log(response);
-      // })
-      //   .catch(function (error) {
-      //   console.log(error);
-      // }); 
-       
-      //ajax end
-    });
-     // addToCart function end
+// addToCart function start
+$("#addtocart").click(function  (e) { 
+  e.preventDefault();
 
-      // Increment function start
-    $('.increment-btn').click(function(e){
-      e.preventDefault();
-      var inc_value=$('.qty-input').val();
-      var value= parseInt(inc_value,10);
-      value=isNaN(value)?0:value;
-      if(value<10)
-      {
-        value++;
-        $('.qty-input').val(value);
-      }
-    });
-     // Increment function end
+ var product_id=$(this).closest('.product_data').find('.prod_id').val();
+ var product_qty=$(this).closest('.product_data').find('.qty-input').val();   
+   // csrf token start
 
-    // Decrement function start
-    $('.decrement-btn').click(function(e){           
-    
-      e.preventDefault();
-      var dec_value=$('.qty-input').val();
-      var value= parseInt(dec_value,10);
-      value=isNaN(value)?0:value;
-      if(value>1)
-      {
-        value--;
-        $('.qty-input').val(value);
-      }
-    });
-    // Decrement function end
- });     
-//Document end
+
+ $.ajaxSetup({
+     headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
+ });
+  // csrf token end
+  
+  // ajax start
+  $.ajax({
+    url:"{{route('addToCart')}}",
+    type: "get",
+    data: {
+      'product_id': product_id,
+      'product_qty': product_qty,
+    },
+      success: function (response) {
+      alert(response.status);
+    }      
+  });
+  //ajax end
+});
+ // addToCart function end
+}); 
 </script>
+
 @endsection
 
       
